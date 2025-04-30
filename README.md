@@ -9,17 +9,23 @@ Ensure you have the [latest](https://docs.docker.com/engine/install/) Docker Eng
 
 Building and running locally
 ----------------------------
-Clone this repository::
-    git clone https://github.com/menoliu/UCBShiftv2
+Clone this repository:
+```
+git clone https://github.com/menoliu/UCBShiftv2
+```
 
-Enter the repository and build locally::
-    cd UCBShiftv2
-    docker build -t cspred .
+Enter the repository and build locally:
+```
+cd UCBShiftv2
+docker build -t cspred .
+```
 
-Make sure you have downloaded and extracted the models mentioned above and mount the folder while running ``cspred``::
-    docker run -it --rm -v ~/Downloads/models:/opt/CSpred/models \
+Make sure you have downloaded and extracted the models mentioned above and mount the folder while running ``cspred``:
+```
+docker run -it --rm -v ~/Downloads/models:/opt/CSpred/models \
     -v "$(pwd)/conformers":/data -w /opt/CSpred cspred:latest \
     /data/conformer_1.pdb -o /data/conf1_cspred.csv
+```
 
 The above command will run UCBShift for ``conformer_1.pdb`` and save the results as ``conf1_cspred.csv``. Please change the paths according to your model and working directories.
 
