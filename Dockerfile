@@ -44,12 +44,13 @@ ENV PIP=/usr/local/bin/pip3.6
 
 # Copy your local tarballs and .deb into the image
 # (Assume they're in the same directory as the Dockerfile)
-COPY ncbi-blast-2.9.0+-x64-linux.tar.gz mTM-align.tar.bz2 CSpred-SideChain.zip ./
+COPY mTM-align.tar.bz2 ./
 
-# Install BLAST+
-RUN tar -xzf ncbi-blast-2.9.0+-x64-linux.tar.gz && \
+# Install BLAST+ 2.9.0
+RUN wget https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.9.0/ncbi-blast-2.9.0+-x64-linux.tar.gz && \
+    tar -xzf ncbi-blast-2.9.0+-x64-linux.tar.gz && \
     cp -r ncbi-blast-2.9.0+/bin/* /usr/local/bin && \
-    rm -rf ncbi-blast-2.9.0+
+    rm -rf ncbi-blast-2.9.0+ ncbi-blast-2.9.0+-x64-linux.tar.gz
 
 # Install mTM-align
 RUN tar -xjf mTM-align.tar.bz2 && \
@@ -58,10 +59,8 @@ RUN tar -xjf mTM-align.tar.bz2 && \
     cp mTM-align /usr/local/bin && \
     cd ../../ && rm -rf mTM-align
 
-# Add your source code
-RUN unzip CSpred-SideChain.zip && \
-    cp -r CSpred-SideChain /opt/CSpred && \
-    rm -rf CSpred
+# # Clone the SideChain branch of CSpred
+RUN git clone --branch SideChain --depth 1 https://github.com/THGLab/CSpred.git /opt/CSpred
 
 # Install Python packages
 RUN $PIP install --no-cache-dir -r /opt/CSpred/requirements.txt
