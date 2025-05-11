@@ -3,7 +3,7 @@ UCBShift v2
 
 Docker image builder for UCBShift v2 from THGLab/CSpred:SideChain
 
-Please note that the [models](https://datadryad.org/stash/share/6vbrswTtNRcHk2vV3e6P1QGH1yYMhvdHDlauysTCObE) will still have to be downloaded separately. The folder storing the models can be linked while running UCBShift V2 through the Docker container.
+Please note that the new UCBShift v2 [models](https://zenodo.org/records/15375968) will still have to be downloaded separately. The folder storing the models can be linked while running UCBShift V2 through the Docker container.
 
 Ensure you have the [latest](https://docs.docker.com/engine/install/) Docker Engine installed.
 
